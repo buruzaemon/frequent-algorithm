@@ -1,24 +1,10 @@
-require 'frequent/version'
+# coding: utf-8
+$: << 'lib'
+require 'minitest/autorun'
+require 'frequent-algorithm'
 
-module Frequent
-
-  class Algorithm
-    attr_reader :n, :b
-    
-    def initialize(n, b)
-      @n = n
-      @b = b
-    end
-
-    def process(item)
-      raise NotImplementedError.new
-    end
-
-    def version
-      Frequent::VERSION
-    end
-
-  end
+[  'test/frequent/tc_algorithm.rb' ].each do |tc|
+  require File.join(File.expand_path('.'), tc)
 end
 
 =begin

@@ -1,23 +1,19 @@
-require 'frequent/version'
+# coding: utf-8
 
-module Frequent
+class TestAlgorithm < MiniTest::Unit::TestCase
 
-  class Algorithm
-    attr_reader :n, :b
-    
-    def initialize(n, b)
-      @n = n
-      @b = b
+  def setup
+    @alg = Frequent::Algorithm.new(10,2)
+  end
+
+  def teardown
+    @alg = nil
+  end
+
+  def test_process
+    assert_raises NotImplementedError do
+      @alg.process(nil)
     end
-
-    def process(item)
-      raise NotImplementedError.new
-    end
-
-    def version
-      Frequent::VERSION
-    end
-
   end
 end
 

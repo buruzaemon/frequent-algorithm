@@ -20,6 +20,15 @@ venison hamburger t-bone landjaeger pork chop drumstick sausage bacon.
 
 ## Development 
 
+The development of this gem requires the following:
+
+* [Ruby 2.0 or greater](https://www.ruby-lang.org/en/)
+* [rubygems](https://rubygems.org/pages/download)
+* [`bundler` gem]( documentation://github.com/bundler/bundler)
+* [`rake` gem](://github.com/ruby/rake)
+* [`yard`](https://rubygems.org/gems/yard) (documentation)
+* [`rdiscount`](https://rubygems.org/gems/rdiscount) (Markdown)
+
 ### Documentation
 
 `frequent-algorithm` uses [`yard`](https://rubygems.org/gems/yard) and
