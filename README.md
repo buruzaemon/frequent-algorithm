@@ -1,4 +1,4 @@
-# frequent-algorithm [![Build Status](https://travis-ci.org/buruzaemon/frequent-algorithm.svg)](https://travis-ci.org/buruzaemon/frequent-algorithm)
+# frequent-algorithm [![Gem Version](https://badge.fury.io/rb/frequent-algorithm.svg)](http://badge.fury.io/rb/frequent-algorithm) [![Build Status](https://travis-ci.org/buruzaemon/frequent-algorithm.svg)](https://travis-ci.org/buruzaemon/frequent-algorithm)
 
 `frequent-algorithm` is a Ruby implementation of the FREQUENT algorithm
 for identifying frequent items in a data stream in sliding windows.
