@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.license = 'MIT'
   s.summary = 'A Ruby implementation of the FREQUENT algorithm for identifying frequent items in a data stream in sliding windows.'
   s.description = <<END_DESC
-frequent-algorithm is a Ruby implementation of the FREQUENT algorithm for identifying frequent items in a data stream in sliding windows. Please refer to [Identifying Frequent Items in Sliding Windows over On-Line Packet Streams](http://erikdemaine.org/papers/SlidingWindow_IMC2003/), by Golab, DeHaan, Demaine, L&#243;pez-Ortiz and Munro (2003).
+frequent-algorithm is a Ruby implementation of the Demaine et al FREQUENT algorithm for identifying frequent items in a data stream in sliding windows (c.f Identifying Frequent Items in Sliding Windows over On-Line Packet Streams, 2003).
 END_DESC
   s.authors = ['Willie Tong', 'Brooke M. Fujita']
   s.email = 'buruzaemon@gmail.com'
