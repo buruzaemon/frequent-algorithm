@@ -2,8 +2,6 @@
 
 ## Getting Started
 
-----
-
 Bacon ipsum dolor amet short loin flank swine ham hock tail. T-bone biltong
 beef shoulder salami, leberkas pork chop ribeye pork belly ground round. Filet
 mignon pork chop spare ribs brisket pastrami picanha bacon, biltong beef ribs
@@ -13,8 +11,6 @@ venison hamburger t-bone landjaeger pork chop drumstick sausage bacon.
 
 ## Usage
 
-----
-
 Bacon ipsum dolor amet short loin flank swine ham hock tail. T-bone biltong
 beef shoulder salami, leberkas pork chop ribeye pork belly ground round. Filet
 mignon pork chop spare ribs brisket pastrami picanha bacon, biltong beef ribs
@@ -23,8 +19,6 @@ venison hamburger t-bone landjaeger pork chop drumstick sausage bacon.
 
 
 ## Development 
-
-----
 
 ### Documentation
 
@@ -61,8 +55,6 @@ Please refer to Publishing To Rubygems.org in the
 [Rubygems Guide](http://guides.rubygems.org/make-your-own-gem/).
 
 ## License
-
-----
 
 frequent-algorithm is provided under the terms of the MIT license.
 
