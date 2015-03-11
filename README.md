@@ -24,8 +24,8 @@ The development of this gem requires the following:
 
 * [Ruby 2.0 or greater](https://www.ruby-lang.org/en/)
 * [rubygems](https://rubygems.org/pages/download)
-* [`bundler`]( documentation://github.com/bundler/bundler)
-* [`rake`](://github.com/ruby/rake)
+* [`bundler`](https://github.com/bundler/bundler)
+* [`rake`](https://github.com/ruby/rake)
 * [`yard`](https://rubygems.org/gems/yard) (documentation)
 * [`rdiscount`](https://rubygems.org/gems/rdiscount) (Markdown)
 
