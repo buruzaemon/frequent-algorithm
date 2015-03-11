@@ -38,32 +38,30 @@ Yard](http://www.rubydoc.info/gems/yard/file/docs/GettingStarted.md).
 
 ### Build
 
-To build this gem:
+Development, testing and release of this rubygem uses the following
+`rake` commands:
 
-    gem build frequent-algorithm.gemspec
 
-### Test
+    rake build    # Build frequent-algorithm-n.n.n.gem into the pkg directory
+    rake clean    # Remove any temporary products
+    rake clobber  # Remove any generated file
+    rake install  # Build and install frequent-algorithm-n.n.n.gem into system gems
+    rake release  # Create tag vn.n.n and build and push frequent-algorithm-n.n.n.gem to Rubygems
+    rake test     # Execute unit tests
+
+
+### Unit Testing
 
 `frequent-algorithm` uses
 [`MiniTest::Unit`](https://github.com/seattlerb/minitest) for
 unit testing.
 
-To execute tests for this gem:
-
-    gem test frequent-algorithm.gemspec
-
 
 ### Release
 
-Publishing this gem out to RubyGems.org only takes one command,
-provided that you have an account on the site. 
-
-After building, release this gem with:
-
-    gem push frequent-algorithm-0.0.0.gem
-
 Please refer to Publishing To Rubygems.org in the
 [Rubygems Guide](http://guides.rubygems.org/make-your-own-gem/).
+
 
 ## License
 
