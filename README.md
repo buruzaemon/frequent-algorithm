@@ -33,6 +33,8 @@ The development of this gem requires the following:
 
 `frequent-algorithm` uses [`yard`](https://rubygems.org/gems/yard) and
 [`rdiscount`](https://rubygems.org/gems/rdiscount) for Markdown documentation.
+Check out [Getting Started with
+Yard](http://www.rubydoc.info/gems/yard/file/docs/GettingStarted.md).
 
 ### Build
 
