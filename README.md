@@ -30,16 +30,7 @@ The development of this gem requires the following:
 * [`yard`](https://rubygems.org/gems/yard) (documentation)
 * [`rdiscount`](https://rubygems.org/gems/rdiscount) (Markdown)
 
-### Documentation
-
-`frequent-algorithm` uses [`yard`](https://rubygems.org/gems/yard) and
-[`rdiscount`](https://rubygems.org/gems/rdiscount) for Markdown documentation.
-Check out [Getting Started with
-Yard](http://www.rubydoc.info/gems/yard/file/docs/GettingStarted.md).
-
-### Build
-
-Development, testing and release of this rubygem uses the following
+Building, testing and release of this rubygem uses the following
 `rake` commands:
 
 
@@ -51,17 +42,31 @@ Development, testing and release of this rubygem uses the following
     rake test     # Execute unit tests
 
 
+### Documentation
+
+`frequent-algorithm` uses [`yard`](https://rubygems.org/gems/yard) and
+[`rdiscount`](https://rubygems.org/gems/rdiscount) for Markdown documentation.
+Check out [Getting Started with
+Yard](http://www.rubydoc.info/gems/yard/file/docs/GettingStarted.md).
+
 ### Unit Testing
 
 `frequent-algorithm` uses
 [`MiniTest::Unit`](https://github.com/seattlerb/minitest) for
 unit testing.
 
-
-### Release
+### Releasing
 
 Please refer to Publishing To Rubygems.org in the
 [Rubygems Guide](http://guides.rubygems.org/make-your-own-gem/).
+
+### Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
 
 
 ## License
