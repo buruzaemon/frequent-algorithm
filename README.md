@@ -1,5 +1,11 @@
 # frequent-algorithm
 
+`frequent-algorithm` is a Ruby implementation of the FREQUENT algorithm
+for identifying frequent items in a data stream in sliding windows.
+Please refer to [Identifying Frequent Items in Sliding Windows over On-Line
+Packet Streams](http://erikdemaine.org/papers/SlidingWindow_IMC2003/), by
+Golab, DeHaan, Demaine, L&#243;pez-Ortiz and Munro (2003).
+
 ## Getting Started
 
 Bacon ipsum dolor amet short loin flank swine ham hock tail. T-bone biltong
@@ -11,12 +17,7 @@ venison hamburger t-bone landjaeger pork chop drumstick sausage bacon.
 
 ## Usage
 
-Bacon ipsum dolor amet short loin flank swine ham hock tail. T-bone biltong
-beef shoulder salami, leberkas pork chop ribeye pork belly ground round. Filet
-mignon pork chop spare ribs brisket pastrami picanha bacon, biltong beef ribs
-corned beef ham hock tail. Meatloaf kielbasa turducken, salami chuck beef ribs
-venison hamburger t-bone landjaeger pork chop drumstick sausage bacon.
-
+    require 'frequent-algorithm'
 
 ## Development 
 

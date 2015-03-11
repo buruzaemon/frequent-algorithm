@@ -6,9 +6,9 @@ Gem::Specification.new do |s|
   s.name = 'frequent-algorithm'
   s.version = Frequent::VERSION
   s.license = 'MIT'
-  s.summary = 'A Ruby implementation of the FREQUENgem leveraging FFI (foreign function interface), frequent combines the Ruby programming language with MeCab, the part-of-speech and morphological analyzer for the Japanese language.'
+  s.summary = 'A Ruby implementation of the FREQUENT algorithm for identifying frequent items in a data stream in sliding windows.'
   s.description = <<END_DESC
-No compiler is necessary, as frequent is not a C extension. It will run on CRuby (mri/yarv) and JRuby (jvm) equally well. It will also run on Windows, Unix/Linux, and OS X. frequent provides a naturally Ruby-esque interface to MeCab.
+frequent-algorithm is a Ruby implementation of the FREQUENT algorithm for identifying frequent items in a data stream in sliding windows. Please refer to [Identifying Frequent Items in Sliding Windows over On-Line Packet Streams](http://erikdemaine.org/papers/SlidingWindow_IMC2003/), by Golab, DeHaan, Demaine, L&#243;pez-Ortiz and Munro (2003).
 END_DESC
   s.authors = ['Willie Tong', 'Brooke M. Fujita']
   s.email = 'buruzaemon@gmail.com'
