@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.name = 'frequent-algorithm'
   s.version = Frequent::VERSION
   s.license = 'MIT'
-  s.summary = 'A Ruby implementation of the FREQUENT algorithm for identifying frequent items in a data stream in sliding windows.'
+  s.summary = 'Identifies frequent items in a data stream in sliding windows using the Demaine et al FREQUENT algorithm.'
   s.description = <<END_DESC
 frequent-algorithm is a Ruby implementation of the Demaine et al FREQUENT algorithm for identifying frequent items in a data stream in sliding windows (c.f Identifying Frequent Items in Sliding Windows over On-Line Packet Streams, 2003).
 END_DESC
