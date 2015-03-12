@@ -26,6 +26,7 @@ END_DESC
     '.yardopts'
   ]
   s.add_development_dependency 'rake'
+  s.add_development_dependency 'minitest'
 end
 
 =begin
