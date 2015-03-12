@@ -50,7 +50,7 @@ venison hamburger t-bone landjaeger pork chop drumstick sausage bacon.
 
 The development of this gem requires the following:
 
-* [Ruby 2.0 or greater](https://www.ruby-lang.org/en/)
+* [Ruby 1.9.3 or greater](https://www.ruby-lang.org/en/)
 * [rubygems](https://rubygems.org/pages/download)
 * [`bundler`](https://github.com/bundler/bundler)
 * [`rake`](https://github.com/ruby/rake)
@@ -65,7 +65,8 @@ Building, testing and release of this rubygem uses the following
     rake clean    # Remove any temporary products
     rake clobber  # Remove any generated file
     rake install  # Build and install frequent-algorithm-n.n.n.gem into system gems
-    rake release  # Create tag vn.n.n and build and push frequent-algorithm-n.n.n.gem to Rubygems
+    rake release  # Create tag vn.n.n and build and push
+                  # frequent-algorithm-n.n.n.gem to Rubygems
     rake test     # Execute unit tests
 
 
