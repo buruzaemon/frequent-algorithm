@@ -3,11 +3,24 @@ require 'frequent/version'
 module Frequent
 
   class Algorithm
-    attr_reader :n, :b
+    attr_reader :n, :b, :k
     
-    def initialize(n, b)
+    def initialize(n, b, k=1)
+      if n <= 0
+        raise ArgumentError.new('n must be greater than 0')
+      end
+      if b <= 0
+        raise ArgumentError.new('b must be greater than 0')
+      end
+      if k <= 0
+        raise ArgumentError.new('k must be greater than 0')
+      end
+      if n/b < 1
+        raise ArgumentError.new('n/b must be greater than 1')
+      end
       @n = n
       @b = b
+      @k = k
     end
 
     def process(item)
