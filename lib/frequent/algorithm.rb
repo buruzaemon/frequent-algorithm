@@ -3,8 +3,24 @@ require 'frequent/version'
 module Frequent
 
   class Algorithm
-    attr_reader :n, :b, :k
+    # @return [Integer] the number of items in the main window
+    attr_reader :n
+    # @return [Integer] the number of items in a basic window
+    attr_reader :b
+    # @return [Integer] the number of top item categories to track
+    attr_reader :k
+    # @return [Array<Hash<Object,Integer>>] global queue for storing basic windows
+    attr_reader :queue
+    # @return [Hash<Object,Integer>] global queue for storing basic windows
+    attr_reader :statistics
+    # @return [Integer] global variable for basic windows delta
+    attr_reader :delta
     
+    # Initializes this frequency-calculating instance.
+    # 
+    # @param [Integer] n number of items to store in the main window
+    # @param [Integer] b number of items to store in a basic window (less than n)
+    # @param [Integer] k number of top item categories to track
     def initialize(n, b, k=1)
       if n <= 0
         raise ArgumentError.new('n must be greater than 0')
@@ -21,16 +37,27 @@ module Frequent
       @n = n
       @b = b
       @k = k
+
+      @queue = [] 
+      @statistics = {}
+      @delta = 0
     end
 
+    # Processes a single item, by first adding it to a basic
+    # window in the internal global queue; and then updating 
+    # the global statistics accordingly.
+    # 
+    # @param [Object] a countable, immutable object.
     def process(item)
       raise NotImplementedError.new
     end
 
+    # Returns the version for this gem.
+    #
+    # @return [String] the version for this gem.
     def version
       Frequent::VERSION
     end
-
   end
 end
 

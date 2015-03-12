@@ -1,4 +1,13 @@
+# coding: utf-8
+
+# `Frequent` is the namespace for objects implementing
+# the Demaine et al. FREQUENT algorithm for finding
+# items the top most frequently-appearing k item in a
+# data stream in sliding windows.
+# 
+# `Frequent::Algorithm` is the implementation class.
 module Frequent
+  # Version string for this Rubygem.
   VERSION = '0.0.1'
 end
 

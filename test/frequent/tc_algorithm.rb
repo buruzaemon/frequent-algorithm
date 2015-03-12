@@ -10,6 +10,12 @@ class TestAlgorithm < MiniTest::Unit::TestCase
     @alg = nil
   end
 
+  def test_process
+    assert_raises NotImplementedError do
+      @alg.process(nil)
+    end
+  end
+
   def test_init
     assert_raises ArgumentError do
       Frequent::Algorithm.new(0,2)  
@@ -26,12 +32,10 @@ class TestAlgorithm < MiniTest::Unit::TestCase
     assert_raises ArgumentError do
       Frequent::Algorithm.new(3, 4, 0)  
     end
-  end
 
-  def test_process
-    assert_raises NotImplementedError do
-      @alg.process(nil)
-    end
+    assert_equal(0, @alg.queue.size)
+    assert_equal(0, @alg.statistics.size)
+    assert_equal(0, @alg.delta)
   end
 end
 

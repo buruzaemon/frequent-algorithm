@@ -1,4 +1,9 @@
 ## CHANGELOG
 
+- __2015/03/??: 0.0.2 release.
+    - First-stage implementation.
+    - API documentation added.
+    - Fleshing out unit tests.
+
 - __2015/03/11__: 0.0.1 release.
     - Initial release.
