@@ -13,8 +13,8 @@ Golab, DeHaan, Demaine, L&#243;pez-Ortiz and Munro (2003).
 > &nbsp;&nbsp;&nbsp;&nbsp;Otherwise:<br/>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create a new local counter for this element type<br/>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and set it equal to 1.<br/>
-> 2. Add a summary S containing identities and counts of the k most frequent items to the back of queue Q.
-> 3. Delete all local counters
+> 2. Add a summary S containing identities and counts of the k most frequent items to the back of queue Q.<br/>
+> 3. Delete all local counters<br/>
 > 4. For each type named in S:<br/>
 > &nbsp;&nbsp;&nbsp;&nbsp;If a global counter exists for this type:<br/>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add to it the count recorded in S.<br/>
