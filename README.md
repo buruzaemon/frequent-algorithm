@@ -6,6 +6,33 @@ Please refer to [Identifying Frequent Items in Sliding Windows over On-Line
 Packet Streams](http://erikdemaine.org/papers/SlidingWindow_IMC2003/), by
 Golab, DeHaan, Demaine, L&#243;pez-Ortiz and Munro (2003).
 
+> LOOP<br/>
+> 1. For each element e in the next b elements:<br/>
+> &nbsp;&nbsp;&nbsp;&nbsp;If a local counter exists for the type of element e:<br/>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Increment the local counter.<br/>
+> &nbsp;&nbsp;&nbsp;&nbsp;Otherwise:<br/>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create a new local counter for this element type<br/>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and set it equal to 1.<br/>
+> 2. Add a summary S containing identities and counts of the k most frequent items to the back of queue Q.
+> 3. Delete all local counters
+> 4. For each type named in S:<br/>
+> &nbsp;&nbsp;&nbsp;&nbsp;If a global counter exists for this type:<br/>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add to it the count recorded in S.<br/>
+> &nbsp;&nbsp;&nbsp;&nbsp;Otherwise:<br/>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create a new global counter for this element type<br/>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and set it equal to the count recorded in S.<br/>
+> 5. Add the count of the kth largest type in S to δ.<br/>
+> 6. If sizeOf(Q) > N/b:<br/>
+> &nbsp;&nbsp;&nbsp;&nbsp;(a) Remove the summary S' from the front of Q and subtract the count of the kth largest type in S' from δ.<br/>
+> &nbsp;&nbsp;&nbsp;&nbsp;(b) For all element types named in S':<br/>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Subtract from their global counters the counts<br/>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;recorded in S'<br/>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If a counter is decremented to zero:<br/>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Delete it.<br/>
+> &nbsp;&nbsp;&nbsp;&nbsp;(c) Output the identity and value of each global counter > δ.
+>
+> &mdash; <cite>Golab, DeHaan, Demaine, López-Ortiz and Munro. Identifying Frequent Items in Sliding Windows over On-Line Packet Streams, 2003</cite>
+
 ## Getting Started
 
 Bacon ipsum dolor amet short loin flank swine ham hock tail. T-bone biltong
