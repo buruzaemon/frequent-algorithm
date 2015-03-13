@@ -56,9 +56,59 @@ module Frequent
     # window in the internal global queue; and then updating 
     # the global statistics accordingly.
     # 
-    # @param [Object] a countable, immutable object.
-    def process(item)
-      raise NotImplementedError.new
+    # @param [Array] an array of objects representing a basic window
+    def process(elements)
+      # Do we need this?
+      return if elements.length != @b
+
+      # Step 1
+      summary = {}
+      elements.each do |e|
+        if summary.key? e
+          summary[e] += 1
+        else
+          summary[e] = 1
+        end
+      end
+
+      # Step 2 & 3
+      # summary is [[item,count],[item,count],[item,count]....]
+      # sorted by count desc
+      summary = summary.sort { |a,b| b[1]<=>a[1] }[0..@k-1]
+      @queue << summary
+
+      # Step 4
+      summary.each do |t|
+        if @statistics.key? t[0]
+          @statistics[t[0]] += t[1]
+        else
+          @statistics[t[0]] = t[1]
+        end
+      end
+
+      # Step 5
+      @delta += summary[@k-1][1]
+      
+      # Step 6
+      if @queue.length > @n/@b
+        # a
+        summary_p = @queue.pop
+        @delta -= summary_p[@k-1][1]
+
+        # b
+        summary_p.each do |t|
+          @statistics[t[0]] -= t[1]
+          @statistics.delete(t[0]) if @statistics[t[0]].zero?
+        end
+
+        # c
+        puts "Here is what are trending..."
+        @statistics.each do |identity, count|
+          if count > @delta
+            puts "Element [#{identity}] has [#{count}] counts."
+          end
+        end
+      end
     end
 
     # Returns the version for this gem.
