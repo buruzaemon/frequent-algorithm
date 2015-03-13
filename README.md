@@ -54,6 +54,7 @@ The development of this gem requires the following:
 * [rubygems](https://rubygems.org/pages/download)
 * [`bundler`](https://github.com/bundler/bundler)
 * [`rake`](https://github.com/ruby/rake)
+* [`minitest`](https://rubygems.org/gems/minitest) (unit testing)
 * [`yard`](https://rubygems.org/gems/yard) (documentation)
 * [`rdiscount`](https://rubygems.org/gems/rdiscount) (Markdown)
 
@@ -93,8 +94,10 @@ Please refer to Publishing To Rubygems.org in the
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
+4. Push to the branch (`git push origin my-new-feature:dev-branch`)
 5. Create new Pull Request
+
+You may wish to read the [Git book online](http://git-scm.com/book/en/v2).
 
 
 ## License
