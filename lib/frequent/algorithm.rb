@@ -2,6 +2,15 @@ require 'frequent/version'
 
 module Frequent
 
+  # `Frequent::Algorithm` is the Ruby implementation of the
+  # Demaine et al. FREQUENT algorithm for calculating 
+  # top-k items in a stream.
+  #
+  # The aims of this algorithm are:
+  # * uses limited memory
+  # * requires constant processing time per item
+  # * is single-pass
+  #
   class Algorithm
     # @return [Integer] the number of items in the main window
     attr_reader :n
