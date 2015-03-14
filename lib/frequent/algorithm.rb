@@ -74,6 +74,7 @@ module Frequent
       # Step 2 & 3
       # summary is [[item,count],[item,count],[item,count]....]
       # sorted by count desc
+      # TODO: Handle the case where k > summary.length
       summary = summary.sort { |a,b| b[1]<=>a[1] }[0..@k-1]
       @queue << summary
 
@@ -87,20 +88,19 @@ module Frequent
       end
 
       # Step 5
+      # TODO: Handle the case where k > summary.length
       @delta += summary[@k-1][1]
       
       # Step 6
       if @queue.length > @n/@b
         # a
-        summary_p = @queue.pop
+        summary_p = @queue.shift
         @delta -= summary_p[@k-1][1]
 
         # b
-        summary_p.each do |t|
-          @statistics[t[0]] -= t[1]
-          @statistics.delete(t[0]) if @statistics[t[0]].zero?
-        end
-
+        summary_p.each { |t| @statistics[t[0]] -= t[1] }
+        @statistics.delete_if { |k,v| v <= 0 }
+        
         # c
         puts "Here is what are trending..."
         @statistics.each do |identity, count|

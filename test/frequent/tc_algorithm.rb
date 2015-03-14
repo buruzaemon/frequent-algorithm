@@ -15,11 +15,6 @@ class TestAlgorithm < MiniTest::Unit::TestCase
   end
 
   def test_process
-    assert_raises NotImplementedError do
-      @alg.process(nil)
-    end
-
-=begin
     data30 = @pi[0...30].scan(/./).each_slice(10).to_a
 
     # N = 20 items per main window
@@ -37,6 +32,7 @@ class TestAlgorithm < MiniTest::Unit::TestCase
     # 5897932384
     assert_equal(2, @alg.queue.length)
     assert_equal(5, @alg.statistics.length)
+    assert_equal(4, @alg.delta)
     topk = @alg.statistics.select {|k,v| v > @alg.delta}
     assert_equal(0, topk.length)
 
@@ -46,11 +42,10 @@ class TestAlgorithm < MiniTest::Unit::TestCase
     # 6264338327
     assert_equal(2, @alg.queue.length)
     assert_equal(5, @alg.statistics.length)
+    assert_equal(4, @alg.delta)
     topk = @alg.statistics.select {|k,v| v > @alg.delta}
     assert_equal(1, topk.length)
     assert_equal(5, topk['3'])
-=end   
-
   end
 
   def test_init
