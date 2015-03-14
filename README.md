@@ -1,10 +1,37 @@
 # frequent-algorithm [![Gem Version](https://badge.fury.io/rb/frequent-algorithm.svg)](http://badge.fury.io/rb/frequent-algorithm) [![Build Status](https://travis-ci.org/buruzaemon/frequent-algorithm.svg)](https://travis-ci.org/buruzaemon/frequent-algorithm)
 
+Web site usage, social network behavior and Internet traffic are examples
+of systems that appear to follow the [power law](http://en.wikipedia.org/wiki/Power_law),
+where most of the events are due to the actions of a very small few.
+Knowing at any given point in time which items are trending is valuable
+in understanding the system.
+
 `frequent-algorithm` is a Ruby implementation of the FREQUENT algorithm
 for identifying frequent items in a data stream in sliding windows.
 Please refer to [Identifying Frequent Items in Sliding Windows over On-Line
 Packet Streams](http://erikdemaine.org/papers/SlidingWindow_IMC2003/), by
 Golab, DeHaan, Demaine, L&#243;pez-Ortiz and Munro (2003).
+
+## Introduction
+
+### Challenges
+
+Challenges for Real-time processing of data streams for _frequent item queries_
+include:
+
+* data may be of unknown and possibly unbound length
+* data may be arriving a very fast rate
+* it might not be possible to go back and re-read the data
+* too large a window of observation may include stale data
+
+Therefore, a solution should have the following characteristics:
+
+* uses limited memory
+* can process events in the stream in &#927;(1) constant time
+* requires only a single-pass over the data
+
+
+### The algorithm 
 
 > LOOP<br/>
 > 1. For each element e in the next b elements:<br/>
@@ -32,14 +59,6 @@ Golab, DeHaan, Demaine, L&#243;pez-Ortiz and Munro (2003).
 > &nbsp;&nbsp;&nbsp;&nbsp;(c) Output the identity and value of each global counter > δ.
 >
 > &mdash; <cite>Golab, DeHaan, Demaine, López-Ortiz and Munro. Identifying Frequent Items in Sliding Windows over On-Line Packet Streams, 2003</cite>
-
-## Getting Started
-
-Bacon ipsum dolor amet short loin flank swine ham hock tail. T-bone biltong
-beef shoulder salami, leberkas pork chop ribeye pork belly ground round. Filet
-mignon pork chop spare ribs brisket pastrami picanha bacon, biltong beef ribs
-corned beef ham hock tail. Meatloaf kielbasa turducken, salami chuck beef ribs
-venison hamburger t-bone landjaeger pork chop drumstick sausage bacon.
 
 
 ## Usage
