@@ -13,13 +13,12 @@ if __FILE__ == $0
   
   # read in the test data (pi to 1000 digits)
   # data includes decimal, and some random whitespace
-  raw = File.read('test/frequent/test_data_pi').strip
-  raw.delete!('.').delete!(' ')
+  pi = File.read('test/frequent/test_data_pi').strip
   
   # split the data into separate chars,
   # and group into 1000/b arrays of b items each
   # data is a Generator
-  data = raw.scan(/./).each_slice(b)
+  data = pi.scan(/./).each_slice(b)
   
   # read in first basic window...
   #alg.process(data.next)

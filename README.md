@@ -46,6 +46,27 @@ venison hamburger t-bone landjaeger pork chop drumstick sausage bacon.
 
     require 'frequent-algorithm'
 
+    # data is pi to 1000 digits
+    pi = File.read('test/frequent/test_data_pi').strip
+    data = pi.scan(/./).each_slice(b)
+    
+    N = 100  # size of main window
+    b =  20  # size of basic window
+    k =   3  # we are interested in top-3 numerals in pi
+  
+    alg = Frequent::Algorithm.new(N, b, k) 
+
+    # read in and process the 1st basic window
+    alg.process(data.next)
+
+    # and the top-3 numerals are?
+    top3 = alg.statistics.select {|k,v| v > alg.delta}
+    puts top3
+
+    # lather, rinse and repeat
+    alg.process(data.next)
+    
+
 ## Development 
 
 The development of this gem requires the following:
@@ -92,10 +113,12 @@ Please refer to Publishing To Rubygems.org in the
 ### Contributing
 
 1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature:dev-branch`)
-5. Create new Pull Request
+2. Begin work on `dev-branch` (`git fetch && git checkout dev-branch`)
+3. Create your feature branch (`git branch my-new-feature && git checkout
+   my-new-feature`)
+4. Commit your changes (`git commit -am 'Add some feature'`)
+5. Push to the branch (`git push origin my-new-feature:dev-branch`)
+6. Create new Pull Request
 
 You may wish to read the [Git book online](http://git-scm.com/book/en/v2).
 
