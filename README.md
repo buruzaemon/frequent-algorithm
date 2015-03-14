@@ -60,7 +60,7 @@ venison hamburger t-bone landjaeger pork chop drumstick sausage bacon.
     alg.process(data.next)
 
     # and the top-3 numerals are?
-    top3 = alg.statistics.select {|k,v| v > alg.delta}
+    top3 = alg.statistics.report
     puts top3
 
     # lather, rinse and repeat

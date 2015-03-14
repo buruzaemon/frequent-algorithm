@@ -25,7 +25,7 @@ class TestAlgorithm < MiniTest::Unit::TestCase
     assert_equal(1, @alg.queue.length)
     assert_equal(3, @alg.statistics.length)
     assert_equal(2, @alg.delta)
-    topk = @alg.statistics.select {|k,v| v > @alg.delta}
+    topk = @alg.report
     assert_equal(0, topk.length)
 
     @alg.process(data30[1]) # 2nd summary in queue...
@@ -33,7 +33,7 @@ class TestAlgorithm < MiniTest::Unit::TestCase
     assert_equal(2, @alg.queue.length)
     assert_equal(5, @alg.statistics.length)
     assert_equal(4, @alg.delta)
-    topk = @alg.statistics.select {|k,v| v > @alg.delta}
+    topk = @alg.report
     assert_equal(0, topk.length)
 
     # after reading in the N/b + 1, or 3rd, window,
@@ -43,7 +43,7 @@ class TestAlgorithm < MiniTest::Unit::TestCase
     assert_equal(2, @alg.queue.length)
     assert_equal(5, @alg.statistics.length)
     assert_equal(4, @alg.delta)
-    topk = @alg.statistics.select {|k,v| v > @alg.delta}
+    topk = @alg.report
     assert_equal(1, topk.length)
     assert_equal(5, topk['3'])
   end
