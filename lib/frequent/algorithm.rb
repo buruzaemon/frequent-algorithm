@@ -70,13 +70,14 @@ module Frequent
           summary[e] = 1
         end
       end
-      # if summary.size < k
-      threshold = [summary.length, @k].min - 1
+
+      # index of the k-th item
+      kth_index = find_kth_largest(summary)
 
       # Step 2 & 3
       # summary is [[item,count],[item,count],[item,count]....]
       # sorted by descending order of the item count
-      summary = summary.sort { |a,b| b[1]<=>a[1] }[0..threshold]
+      summary = summary.sort { |a,b| b[1]<=>a[1] }[0..kth_index]
       @queue << summary
 
       # Step 4
@@ -89,25 +90,23 @@ module Frequent
       end
 
       # Step 5
-      @delta += summary[threshold][1]
+      @delta += summary[kth_index][1]
       
       # Step 6
-      if @queue.length > @n/@b
+      if should_pop_oldest_summary
         # a
         summary_p = @queue.shift
-        @delta -= summary_p[@k-1][1]
+        @delta -= summary_p[find_kth_largest(summary_p)][1]
 
         # b
         summary_p.each { |t| @statistics[t[0]] -= t[1] }
         @statistics.delete_if { |k,v| v <= 0 }
-      end
-    end
 
-    # Return all items from global counter whose count > delta
-    #
-    # @return [Hash] the items whose count > delta
-    def report
-      @statistics.select { |k,v| v > @delta }
+        #c
+        @statistics.select { |k,v| v > @delta }
+      else
+        {}
+      end
     end
 
     # Returns the version for this gem.
@@ -116,6 +115,22 @@ module Frequent
     def version
       Frequent::VERSION
     end
+
+    private
+      # Return true when it is ready to pop oldest summary from queue
+      #
+      # @return [Boolean] whether it is ready to pop oldest summary from queue
+      def should_pop_oldest_summary
+        @queue.length > @n/@b
+      end
+
+      # Return the k-th index of a summary object
+      #
+      # @param [Object] a summary object
+      # @return [Integer] the k-th index
+      def find_kth_largest(summary)
+        [summary.length, @k].min - 1
+      end
   end
 end
 
