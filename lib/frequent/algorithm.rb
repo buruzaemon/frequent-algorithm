@@ -70,12 +70,13 @@ module Frequent
           summary[e] = 1
         end
       end
+      # if summary.size < k
+      threshold = [summary.length, @k].min - 1
 
       # Step 2 & 3
       # summary is [[item,count],[item,count],[item,count]....]
-      # sorted by count desc
-      # @TODO: Handle the case where k > summary.length
-      summary = summary.sort { |a,b| b[1]<=>a[1] }[0..@k-1]
+      # sorted by descending order of the item count
+      summary = summary.sort { |a,b| b[1]<=>a[1] }[0..threshold]
       @queue << summary
 
       # Step 4
@@ -88,8 +89,7 @@ module Frequent
       end
 
       # Step 5
-      # @TODO: Handle the case where k > summary.length
-      @delta += summary[@k-1][1]
+      @delta += summary[threshold][1]
       
       # Step 6
       if @queue.length > @n/@b
@@ -105,7 +105,7 @@ module Frequent
 
     # Return all items from global counter whose count > delta
     #
-    # @return [Array] the items whose count > delta
+    # @return [Hash] the items whose count > delta
     def report
       @statistics.select { |k,v| v > @delta }
     end
