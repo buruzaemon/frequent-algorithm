@@ -48,6 +48,13 @@ class TestAlgorithm < MiniTest::Unit::TestCase
     assert_equal(5, topk['3'])
   end
 
+  def test_summary_size_smaller_than_k
+    @alg.process([1,1,1,1,1,2,2,2,2,2])
+    assert_equal(1, @alg.queue.length)
+    assert_equal(2, @alg.statistics.length)
+    assert_equal(5, @alg.delta)
+  end
+
   def test_init
     assert_raises ArgumentError do
       Frequent::Algorithm.new(0,2)  
