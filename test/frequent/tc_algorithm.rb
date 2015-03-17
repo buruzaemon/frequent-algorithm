@@ -20,39 +20,54 @@ class TestAlgorithm < MiniTest::Unit::TestCase
     # N = 20 items per main window
     # b = 10 items per basic window
     # k = 3 (top-3 numerals)
-    @alg.process(data30[0]) # only 1 summary in queue...
+    topk = @alg.process(data30[0]) # only 1 summary in queue...
     # 3141592653
     assert_equal(1, @alg.queue.length)
     assert_equal(3, @alg.statistics.length)
     assert_equal(2, @alg.delta)
-    topk = @alg.report
     assert_equal(0, topk.length)
 
-    @alg.process(data30[1]) # 2nd summary in queue...
+    topk = @alg.process(data30[1]) # 2nd summary in queue...
     # 5897932384
     assert_equal(2, @alg.queue.length)
     assert_equal(5, @alg.statistics.length)
     assert_equal(4, @alg.delta)
-    topk = @alg.report
     assert_equal(0, topk.length)
 
     # after reading in the N/b + 1, or 3rd, window,
     # we can now start getting answers to top-k query
-    @alg.process(data30[2]) # 3rd summary, delta updated
+    topk = @alg.process(data30[2]) # 3rd summary, delta updated
     # 6264338327
     assert_equal(2, @alg.queue.length)
     assert_equal(5, @alg.statistics.length)
     assert_equal(4, @alg.delta)
-    topk = @alg.report
     assert_equal(1, topk.length)
     assert_equal(5, topk['3'])
   end
 
   def test_summary_size_smaller_than_k
-    @alg.process([1,1,1,1,1,2,2,2,2,2])
+    # the 1st summary has 2 unique items only
+    topk = @alg.process(%w(1 1 1 1 1 1 2 2 2 2)) # 1st summary in queue...
     assert_equal(1, @alg.queue.length)
     assert_equal(2, @alg.statistics.length)
+    assert_equal(4, @alg.delta)
+    assert_equal(0, topk.length)
+
+    topk = @alg.process(%w(1 1 1 2 2 2 3 3 3 4)) #2nd summary in queue...
+    assert_equal(2, @alg.queue.length)
+    assert_equal(3, @alg.statistics.length)
+    assert_equal(7, @alg.delta)
+    assert_equal(0, topk.length)
+
+    # after reading in the N/b + 1, or 3rd, window,
+    # we can now start getting answers to top-k query
+    # the first summary with 2 items was used as S'
+    topk = @alg.process(%w(1 1 1 2 2 3 3 3 3 4)) # 3rd summary, delta updated
+    assert_equal(2, @alg.queue.length)
+    assert_equal(3, @alg.statistics.length)
     assert_equal(5, @alg.delta)
+    assert_equal(2, topk.length)
+    assert_equal(7, topk['3'])
   end
 
   def test_init
