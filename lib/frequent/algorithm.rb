@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'frequent/version'
 
 module Frequent
@@ -7,9 +8,9 @@ module Frequent
   # top-k items in a stream.
   #
   # The aims of this algorithm are:
-  # * uses limited memory
-  # * requires constant processing time per item
-  # * is single-pass
+  # * use limited memory
+  # * require constant processing time per item
+  # * require a single-pass only
   #
   class Algorithm
     # @return [Integer] the number of items in the main window
@@ -18,18 +19,22 @@ module Frequent
     attr_reader :b
     # @return [Integer] the number of top item categories to track
     attr_reader :k
-    # @return [Array<Hash<Object,Integer>>] global queue for storing basic windows
+    # @return [Array<Hash<Object,Integer>>] global queue for basic window summaries
     attr_reader :queue
-    # @return [Hash<Object,Integer>] global queue for storing basic windows
+    # @return [Hash<Object,Integer>] global mapping of items and counts
     attr_reader :statistics
-    # @return [Integer] global variable for basic windows delta
+    # @return [Integer] minimum threshold for membership in top-k items
     attr_reader :delta
     
-    # Initializes this frequency-calculating instance.
+    # Initializes this top-k frequency-calculating instance.
     # 
-    # @param [Integer] n number of items to store in the main window
-    # @param [Integer] b number of items to store in a basic window (less than n)
+    # @param [Integer] n number of items in the main window
+    # @param [Integer] b number of items in a basic window
     # @param [Integer] k number of top item categories to track
+    # @raise [ArgumentError] if n is not greater than 0
+    # @raise [ArgumentError] if b is not greater than 0
+    # @raise [ArgumentError] if k is not greater than 0
+    # @raise [ArgumentError] if n/b is not greater than 1
     def initialize(n, b, k=1)
       if n <= 0
         raise ArgumentError.new('n must be greater than 0')
@@ -52,9 +57,9 @@ module Frequent
       @delta = 0
     end
 
-    # Processes a single item, by first adding it to a basic
-    # window in the internal global queue; and then updating 
-    # the global statistics accordingly.
+    # Processes a single basic window of b items, by first adding
+    # a summary of this basic window in the internal global queue;
+    # and then updating the global statistics accordingly.
     # 
     # @param [Array] an array of objects representing a basic window
     def process(elements)
