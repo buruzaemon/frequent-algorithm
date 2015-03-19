@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'frequent/version'
 
 module Frequent
@@ -7,9 +8,9 @@ module Frequent
   # top-k items in a stream.
   #
   # The aims of this algorithm are:
-  # * uses limited memory
-  # * requires constant processing time per item
-  # * is single-pass
+  # * use limited memory
+  # * require constant processing time per item
+  # * require a single-pass only
   #
   class Algorithm
     # @return [Integer] the number of items in the main window
@@ -18,18 +19,22 @@ module Frequent
     attr_reader :b
     # @return [Integer] the number of top item categories to track
     attr_reader :k
-    # @return [Array<Hash<Object,Integer>>] global queue for storing basic windows
+    # @return [Array<Hash<Object,Integer>>] global queue for basic window summaries
     attr_reader :queue
-    # @return [Hash<Object,Integer>] global queue for storing basic windows
+    # @return [Hash<Object,Integer>] global mapping of items and counts
     attr_reader :statistics
-    # @return [Integer] global variable for basic windows delta
+    # @return [Integer] minimum threshold for membership in top-k items
     attr_reader :delta
     
-    # Initializes this frequency-calculating instance.
+    # Initializes this top-k frequency-calculating instance.
     # 
-    # @param [Integer] n number of items to store in the main window
-    # @param [Integer] b number of items to store in a basic window (less than n)
+    # @param [Integer] n number of items in the main window
+    # @param [Integer] b number of items in a basic window
     # @param [Integer] k number of top item categories to track
+    # @raise [ArgumentError] if n is not greater than 0
+    # @raise [ArgumentError] if b is not greater than 0
+    # @raise [ArgumentError] if k is not greater than 0
+    # @raise [ArgumentError] if n/b is not greater than 1
     def initialize(n, b, k=1)
       if n <= 0
         raise ArgumentError.new('n must be greater than 0')
@@ -52,13 +57,61 @@ module Frequent
       @delta = 0
     end
 
-    # Processes a single item, by first adding it to a basic
-    # window in the internal global queue; and then updating 
-    # the global statistics accordingly.
+    # Processes a single basic window of b items, by first adding
+    # a summary of this basic window in the internal global queue;
+    # and then updating the global statistics accordingly.
     # 
-    # @param [Object] a countable, immutable object.
-    def process(item)
-      raise NotImplementedError.new
+    # @param [Array] an array of objects representing a basic window
+    def process(elements)
+      # Do we need this?
+      return if elements.length != @b
+
+      # Step 1
+      summary = {}
+      elements.each do |e|
+        if summary.key? e
+          summary[e] += 1
+        else
+          summary[e] = 1
+        end
+      end
+
+      # index of the k-th item
+      kth_index = find_kth_largest(summary)
+
+      # Step 2 & 3
+      # summary is [[item,count],[item,count],[item,count]....]
+      # sorted by descending order of the item count
+      summary = summary.sort { |a,b| b[1]<=>a[1] }[0..kth_index]
+      @queue << summary
+
+      # Step 4
+      summary.each do |t|
+        if @statistics.key? t[0]
+          @statistics[t[0]] += t[1]
+        else
+          @statistics[t[0]] = t[1]
+        end
+      end
+
+      # Step 5
+      @delta += summary[kth_index][1]
+      
+      # Step 6
+      if should_pop_oldest_summary
+        # a
+        summary_p = @queue.shift
+        @delta -= summary_p[find_kth_largest(summary_p)][1]
+
+        # b
+        summary_p.each { |t| @statistics[t[0]] -= t[1] }
+        @statistics.delete_if { |k,v| v <= 0 }
+
+        #c
+        @statistics.select { |k,v| v > @delta }
+      else
+        {}
+      end
     end
 
     # Returns the version for this gem.
@@ -67,6 +120,22 @@ module Frequent
     def version
       Frequent::VERSION
     end
+
+    private
+      # Return true when it is ready to pop oldest summary from queue
+      #
+      # @return [Boolean] whether it is ready to pop oldest summary from queue
+      def should_pop_oldest_summary
+        @queue.length > @n/@b
+      end
+
+      # Return the k-th index of a summary object
+      #
+      # @param [Object] a summary object
+      # @return [Integer] the k-th index
+      def find_kth_largest(summary)
+        [summary.length, @k].min - 1
+      end
   end
 end
 

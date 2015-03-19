@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
 frequent-algorithm is a Ruby implementation of the Demaine et al FREQUENT algorithm for identifying frequent items in a data stream in sliding windows (c.f Identifying Frequent Items in Sliding Windows over On-Line Packet Streams, 2003).
 END_DESC
   s.authors = ['Willie Tong', 'Brooke M. Fujita']
-  s.email = 'buruzaemon@gmail.com'
+  s.email = ['tongsinyin@gmail.com', 'buruzaemon@gmail.com']
   s.homepage = 'https://github.com/buruzaemon/frequent-algorithm'
   s.platform = Gem::Platform::RUBY
   s.required_ruby_version = '>= 2.0'
