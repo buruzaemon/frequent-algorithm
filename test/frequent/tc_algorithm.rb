@@ -91,6 +91,55 @@ class TestAlgorithm < MiniTest::Unit::TestCase
     assert_equal(0, @alg.statistics.size)
     assert_equal(0, @alg.delta)
   end
+
+  def test_kth_largest
+    Frequent::Algorithm.expose_privates do
+
+      assert_raises ArgumentError do
+        @alg.kth_largest(nil, 6)
+      end
+
+      assert_raises ArgumentError do
+        @alg.kth_largest([], 6)
+      end
+
+      a1 = [1,2,3,4,5]
+      assert_equal(5, @alg.kth_largest(a1, 1))
+      assert_equal(4, @alg.kth_largest(a1, 2))
+      assert_equal(3, @alg.kth_largest(a1, 3))
+      assert_equal(2, @alg.kth_largest(a1, 4))
+      assert_equal(1, @alg.kth_largest(a1, 5))
+      assert_raises ArgumentError do
+        @alg.kth_largest(a1, 0)
+      end
+      assert_raises ArgumentError do
+        @alg.kth_largest(a1, 6)
+      end
+      
+      a2 = [2,2,4,4,1]
+      assert_equal(4, @alg.kth_largest(a2, 1))
+      assert_equal(4, @alg.kth_largest(a2, 2))
+      assert_equal(2, @alg.kth_largest(a2, 3))
+      assert_equal(2, @alg.kth_largest(a2, 4))
+      assert_equal(1, @alg.kth_largest(a2, 5))
+
+      a3 = [1,1,2,1,1,1]
+      assert_equal(2, @alg.kth_largest(a3, 1))
+      assert_equal(1, @alg.kth_largest(a3, 2))
+      assert_equal(1, @alg.kth_largest(a3, 3))
+      assert_equal(1, @alg.kth_largest(a3, 4))
+      assert_equal(1, @alg.kth_largest(a3, 5))
+      assert_equal(1, @alg.kth_largest(a3, 6))
+
+      a4 = [1,1,1,1,1,1]
+      assert_equal(1, @alg.kth_largest(a4, 1))
+      assert_equal(1, @alg.kth_largest(a4, 2))
+      assert_equal(1, @alg.kth_largest(a4, 3))
+      assert_equal(1, @alg.kth_largest(a4, 4))
+      assert_equal(1, @alg.kth_largest(a4, 5))
+      assert_equal(1, @alg.kth_largest(a4, 6))
+    end
+  end
 end
 
 =begin
