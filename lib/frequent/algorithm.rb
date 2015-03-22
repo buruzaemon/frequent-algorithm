@@ -79,35 +79,32 @@ module Frequent
         end
       end
 
-      # index of the k-th item
-      kth_index = find_kth_largest(summary)
-
-      # Step 2 & 3
-      # summary is [[item,count],[item,count],[item,count]....]
-      # sorted by descending order of the item count
-      summary = summary.sort { |a,b| b[1]<=>a[1] }[0..kth_index]
+      # Step 2
       @queue << summary
 
+      # Step 3
+      # Done, implicitly
+
       # Step 4
-      summary.each do |t|
-        if @statistics.key? t[0]
-          @statistics[t[0]] += t[1]
+      summary.each do |k,v|
+        if @statistics.key? k
+          @statistics[k] += v
         else
-          @statistics[t[0]] = t[1]
+          @statistics[k] = v
         end
       end
 
       # Step 5
-      @delta += summary[kth_index][1]
+      @delta += kth_largest(summary.values, @k)
 
-      # Step 6
-      if should_pop_oldest_summary
+      # Step 6 - sizeOf(Q) > N/b
+      if @queue.length > @n/@b
         # a
         summary_p = @queue.shift
-        @delta -= summary_p[find_kth_largest(summary_p)][1]
+        @delta -= kth_largest(summary_p.values, @k)
 
         # b
-        summary_p.each { |t| @statistics[t[0]] -= t[1] }
+        summary_p.each { |k,v| @statistics[k] -= v }
         @statistics.delete_if { |k,v| v <= 0 }
 
         #c
@@ -125,44 +122,35 @@ module Frequent
     end
 
     private
-    # Return true when it is ready to pop oldest summary from queue
-    #
-    # @return [Boolean] whether it is ready to pop oldest summary from queue
-    def should_pop_oldest_summary
-      @queue.length > @n/@b
-    end
-
-    # Return the k-th index of a summary object
-    #
-    # @param [Object] a summary object
-    # @return [Integer] the k-th index
-    def find_kth_largest(summary)
-      [summary.length, @k].min - 1
-    end
-
-    # Return the kth largest element in the given list.
+    # Given a list of numbers and a number k which should be
+    # between 1 and the length of the given list, return the
+    # element x in the list that is larger than exactly k-1
+    # other elements in the list.
     #
     # @param [Array] list of integers
-    # @return [Integer] the k-th largest element in list
+    # @return [Integer] the kth largest element in list
     def kth_largest(list, k)
       raise ArgumentError.new(ERR_BADLIST) if list.nil? or list.empty?
-      raise ArgumentError.new(ERR_BADK) if k < 1 or k > list.size
+      raise ArgumentError.new(ERR_BADK) if k < 1
 
-      def quickselect(ulist, k)
-        p = rand(ulist.size)
+      ulist = list.uniq
+      k = ulist.size if k > ulist.size
 
-        lower = ulist.select { |e| e < ulist[p] }
-        upper = ulist.select { |e| e > ulist[p] }
+      def quickselect(aset, k)
+        p = rand(aset.size)
+
+        lower = aset.select { |e| e < aset[p] }
+        upper = aset.select { |e| e > aset[p] }
 
         if k <= lower.size
           quickselect(lower, k)
-        elsif k > ulist.size - upper.size
-          quickselect(upper, k - (ulist.size - upper.size))
+        elsif k > aset.size - upper.size
+          quickselect(upper, k - (aset.size - upper.size))
         else
-          ulist[p]
+          aset[p]
         end
       end
-      quickselect(list, list.size+1-k)
+      quickselect(ulist, ulist.size+1-k)
     end
   end
 end
