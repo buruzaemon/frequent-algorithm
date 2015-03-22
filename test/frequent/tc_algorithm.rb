@@ -23,14 +23,14 @@ class TestAlgorithm < MiniTest::Unit::TestCase
     topk = @alg.process(data30[0]) # only 1 summary in queue...
     # 3141592653
     assert_equal(1, @alg.queue.length)
-    assert_equal(3, @alg.statistics.length)
+    assert_equal(7, @alg.statistics.length)
     assert_equal(2, @alg.delta)
     assert_equal(0, topk.length)
 
     topk = @alg.process(data30[1]) # 2nd summary in queue...
     # 5897932384
     assert_equal(2, @alg.queue.length)
-    assert_equal(5, @alg.statistics.length)
+    assert_equal(9, @alg.statistics.length)
     assert_equal(4, @alg.delta)
     assert_equal(0, topk.length)
 
@@ -39,7 +39,8 @@ class TestAlgorithm < MiniTest::Unit::TestCase
     topk = @alg.process(data30[2]) # 3rd summary, delta updated
     # 6264338327
     assert_equal(2, @alg.queue.length)
-    assert_equal(5, @alg.statistics.length)
+    assert_equal(8, @alg.statistics.length)
+    assert_nil(@alg.statistics['1'])
     assert_equal(4, @alg.delta)
     assert_equal(1, topk.length)
     assert_equal(5, topk['3'])
@@ -55,7 +56,7 @@ class TestAlgorithm < MiniTest::Unit::TestCase
 
     topk = @alg.process(%w(1 1 1 2 2 2 3 3 3 4)) #2nd summary in queue...
     assert_equal(2, @alg.queue.length)
-    assert_equal(3, @alg.statistics.length)
+    assert_equal(4, @alg.statistics.length)
     assert_equal(7, @alg.delta)
     assert_equal(0, topk.length)
 
@@ -64,10 +65,11 @@ class TestAlgorithm < MiniTest::Unit::TestCase
     # the first summary with 2 items was used as S'
     topk = @alg.process(%w(1 1 1 2 2 3 3 3 3 4)) # 3rd summary, delta updated
     assert_equal(2, @alg.queue.length)
-    assert_equal(3, @alg.statistics.length)
+    assert_equal(4, @alg.statistics.length)
     assert_equal(5, @alg.delta)
     assert_equal(2, topk.length)
     assert_equal(7, topk['3'])
+    assert_equal(6, topk['1'])
   end
 
   def test_init
@@ -112,9 +114,7 @@ class TestAlgorithm < MiniTest::Unit::TestCase
       assert_raises ArgumentError do
         @alg.kth_largest(a1, 0)
       end
-      assert_raises ArgumentError do
-        @alg.kth_largest(a1, 6)
-      end
+      assert_equal(5, @alg.kth_largest(a1, 6))
       
       a2 = [2,2,4,4,1]
       assert_equal(4, @alg.kth_largest(a2, 1))
