@@ -122,31 +122,35 @@ module Frequent
     end
 
     private
-    # Return the kth largest element in the given list.
+    # Given a list of numbers and a number k which should be
+    # between 1 and the length of the given list, return the
+    # element x in the list that is larger than exactly k-1
+    # other elements in the list.
     #
     # @param [Array] list of integers
-    # @return [Integer] the k-th largest element in list
+    # @return [Integer] the kth largest element in list
     def kth_largest(list, k)
       raise ArgumentError.new(ERR_BADLIST) if list.nil? or list.empty?
       raise ArgumentError.new(ERR_BADK) if k < 1
 
-      return list.last if k > list.size
+      ulist = list.uniq
+      k = ulist.size if k > ulist.size
 
-      def quickselect(ulist, k)
-        p = rand(ulist.size)
+      def quickselect(aset, k)
+        p = rand(aset.size)
 
-        lower = ulist.select { |e| e < ulist[p] }
-        upper = ulist.select { |e| e > ulist[p] }
+        lower = aset.select { |e| e < aset[p] }
+        upper = aset.select { |e| e > aset[p] }
 
         if k <= lower.size
           quickselect(lower, k)
-        elsif k > ulist.size - upper.size
-          quickselect(upper, k - (ulist.size - upper.size))
+        elsif k > aset.size - upper.size
+          quickselect(upper, k - (aset.size - upper.size))
         else
-          ulist[p]
+          aset[p]
         end
       end
-      quickselect(list, list.size+1-k)
+      quickselect(ulist, ulist.size+1-k)
     end
   end
 end
