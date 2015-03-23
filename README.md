@@ -102,13 +102,13 @@ Building, testing and release of this rubygem uses the following
 `rake` commands:
 
 
-    rake build    # Build frequent-algorithm-n.n.n.gem into the pkg directory
     rake clean    # Remove any temporary products
     rake clobber  # Remove any generated file
+    rake test     # Execute unit tests
+    rake build    # Build frequent-algorithm-n.n.n.gem into the pkg directory
     rake install  # Build and install frequent-algorithm-n.n.n.gem into system gems
     rake release  # Create tag vn.n.n and build and push
                   # frequent-algorithm-n.n.n.gem to Rubygems
-    rake test     # Execute unit tests
 
 
 ### Documentation
