@@ -1,7 +1,7 @@
 # frequent-algorithm [![Gem Version](https://badge.fury.io/rb/frequent-algorithm.svg)](http://badge.fury.io/rb/frequent-algorithm) [![Build Status](https://travis-ci.org/buruzaemon/frequent-algorithm.svg)](https://travis-ci.org/buruzaemon/frequent-algorithm)
 
 Web site usage, social network behavior and Internet traffic are examples
-of systems that appear to follow the [power law](http://en.wikipedia.org/wiki/Power_law),
+of systems that appear to follow the [Power law](http://en.wikipedia.org/wiki/Power_law),
 where most of the events are due to the actions of a very small few.
 Knowing at any given point in time which items are trending is valuable
 in understanding the system.
