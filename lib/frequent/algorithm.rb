@@ -28,6 +28,8 @@ module Frequent
     attr_reader :statistics
     # @return [Integer] minimum threshold for membership in top-k items
     attr_reader :delta
+    # @return [Hash<Object,Integer>] latest top k elements and their counts
+    attr_reader :topk
 
     # Initializes this top-k frequency-calculating instance.
     # 
@@ -58,6 +60,7 @@ module Frequent
       @queue = [] 
       @statistics = {}
       @delta = 0
+      @topk = {}
     end
 
     # Processes a single basic window of b items, by first adding
@@ -108,10 +111,15 @@ module Frequent
         @statistics.delete_if { |k,v| v <= 0 }
 
         #c
-        @statistics.select { |k,v| v > @delta }
-      else
-        {}
+        @topk = @statistics.select { |k,v| v > @delta }
       end
+    end
+
+    # Return the latest Tok K elements
+    #
+    # @return [Hash<Object,Integer>] a hash which contains the current top K elements and their counts
+    def report
+      @topk
     end
 
     # Returns the version for this gem.
