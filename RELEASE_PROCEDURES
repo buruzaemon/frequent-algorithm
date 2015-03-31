@@ -1,0 +1,32 @@
+Pre-Release Checklist
+---------------------
+1. Milestone for release created?
+2. Milestone associated with all issues related to this release?
+3. lib/frequent/version.rb updated?
+4. Any edits/additions needed for API documentation or README?
+5. Any edits/additions needed for project Wiki?
+6. CHANGELOG date and entry added for this release?
+7. All changes in dev-branch merged back into master?
+
+Release Procedures
+------------------
+1. Change to master
+   $ git checkout master
+2. Clean/clear out your workspace   
+   $ rake clean clobber
+3. Run the unit tests
+   $ rake test
+4. Build and confirm successful installation of gem
+   $ rake build install
+5. Create project tag on Github, push gem to Rubygems
+   $ rake release
+
+Updated API documentation for the new gem version will appear
+on Yarddocs shortly.
+  
+*. If you need to pull back a released gem
+   $ gem yank GEM -v VERSION [-p PLATFORM] [--undo] [--key KEY_NAME]
+
+NOTE that if you must pull back a released version, you cannot
+     re-release the same version. You will have to increment
+     the release version number, and release this new version.
