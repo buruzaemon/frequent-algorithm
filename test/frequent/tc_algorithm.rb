@@ -15,7 +15,7 @@ class TestAlgorithm < MiniTest::Unit::TestCase
   end
 
   def test_process
-    data30 = @pi[0...30].scan(/./).each_slice(10).to_a
+    data30 = @pi[0...40].scan(/./).each_slice(10).to_a
 
     # N = 20 items per main window
     # b = 10 items per basic window
@@ -48,6 +48,20 @@ class TestAlgorithm < MiniTest::Unit::TestCase
     assert_equal(5, topk['3'])
     assert_equal(3, topk['2'])
     assert_equal(3, topk['8'])
+
+    # this is to test whether the topk will be updated
+    # 9502884197
+    @alg.process(data30[3]) # 4th summary
+    assert_equal(2, @alg.queue.length)
+    assert_equal(10, @alg.statistics.length)
+    assert_equal(2, @alg.delta)
+    
+    topk = @alg.report
+    assert_equal(3, topk.length)
+    assert_equal(3, topk['3'])  # different!
+    assert_equal(3, topk['2'])
+    assert_equal(3, topk['8'])
+
   end
 
   def test_summary_size_smaller_than_k
@@ -136,27 +150,7 @@ class TestAlgorithm < MiniTest::Unit::TestCase
       assert_equal(1, @alg.kth_largest(a4, 1))
       assert_equal(1, @alg.kth_largest(a4, a4.uniq.size+1))
     end
-  end
-
-  def test_report
-    data30 = @pi[0...30].scan(/./).each_slice(10).to_a
-
-    # N = 20 items per main window
-    # b = 10 items per basic window
-    # k = 3 (top-3 numerals)
-    
-    # First pass, should return empty hash
-    @alg.process(data30[0])
-    assert_empty(@alg.report)
-
-    # Second pass, still nothing
-    @alg.process(data30[1])
-    assert_empty(@alg.report)
-
-    # Third pass, should return something
-    topk = @alg.process(data30[2])
-    assert_equal(3, topk.length)
-  end
+  end 
 end
 
 =begin
