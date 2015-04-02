@@ -118,16 +118,19 @@ Building, testing and release of this rubygem uses the following
 Check out [Getting Started with
 Yard](http://www.rubydoc.info/gems/yard/file/docs/GettingStarted.md).
 
+
 ### Unit Testing
 
 `frequent-algorithm` uses
 [`MiniTest::Unit`](https://github.com/seattlerb/minitest) for
 unit testing.
 
+
 ### Releasing
 
 Please refer to Publishing To Rubygems.org in the
 [Rubygems Guide](http://guides.rubygems.org/make-your-own-gem/).
+
 
 ### Contributing
 
@@ -142,8 +145,13 @@ Please refer to Publishing To Rubygems.org in the
 You may wish to read the [Git book online](http://git-scm.com/book/en/v2).
 
 
+## Changelog
+
+Please see the {file:CHANGELOG} for this gem's release history.
+
+
 ## License
 
 frequent-algorithm is provided under the terms of the MIT license.
 
-Copyright &copy; 2015, Willie Tong &amp; Brooke M. Fujita. All rights reserved.
+Copyright &copy; 2015, Willie Tong &amp; Brooke M. Fujita. All rights reserved. Please see the {file:LICENSE} file for further details.
