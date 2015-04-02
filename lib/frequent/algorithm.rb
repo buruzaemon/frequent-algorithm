@@ -30,6 +30,8 @@ module Frequent
     attr_reader :delta
     # @return [Hash<Object,Integer>] latest top k elements and their counts
     attr_reader :topk
+    # @return [Array[Object]] the window of elements of size b
+    attr_reader :window
 
     # Initializes this top-k frequency-calculating instance.
     # 
@@ -61,26 +63,28 @@ module Frequent
       @statistics = {}
       @delta = 0
       @topk = {}
+      @window = []
     end
 
     # Processes a single basic window of b items, by first adding
     # a summary of this basic window in the internal global queue;
     # and then updating the global statistics accordingly.
     # 
-    # @param [Array] an array of objects representing a basic window
-    def process(elements)
-      # Do we need this?
-      return if elements.length != @b
+    # @param [Object] an object from a data stream
+    def process(element)
+      @window << element
+      return if @window.length != @b
 
       # Step 1
       summary = {}
-      elements.each do |e|
+      @window.each do |e|
         if summary.key? e
           summary[e] += 1
         else
           summary[e] = 1
         end
       end
+      @window.clear   #current window cleared
 
       # Step 2
       @queue << summary
