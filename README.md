@@ -1,4 +1,4 @@
-# frequent-algorithm [![Gem Version](https://badge.fury.io/rb/frequent-algorithm.svg)](http://badge.fury.io/rb/frequent-algorithm) [![Build Status](https://travis-ci.org/buruzaemon/frequent-algorithm.svg?branch=master)](https://travis-ci.org/buruzaemon/frequent-algorithm) 
+# frequent-algorithm [![License](https://img.shields.io/badge/license-MIT-blue.svg)]() [![Build Status](https://travis-ci.org/buruzaemon/frequent-algorithm.svg?branch=master)](https://travis-ci.org/buruzaemon/frequent-algorithm) [![Gem Version](https://badge.fury.io/rb/frequent-algorithm.svg)](https://rubygems.org/gems/frequent-algorithm)
 
 Web site usage, social network behavior and Internet traffic are examples
 of systems that appear to follow the [Power law](http://en.wikipedia.org/wiki/Power_law),
