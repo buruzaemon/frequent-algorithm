@@ -1,6 +1,6 @@
 # coding: utf-8
 
-class TestAlgorithm < MiniTest::Unit::TestCase
+class TestAlgorithm < Minitest::Test
 
   def setup
     @alg = Frequent::Algorithm.new(20,10,3)
