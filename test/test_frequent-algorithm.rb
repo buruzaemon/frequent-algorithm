@@ -1,5 +1,6 @@
 # coding: utf-8
 $: << 'lib'
+require 'minitest'
 require 'minitest/autorun'
 require 'frequent-algorithm'
 
