@@ -1,4 +1,4 @@
-# frequent-algorithm [![License](https://img.shields.io/badge/license-MIT-blue.svg)]() [![Build Status](https://travis-ci.org/buruzaemon/frequent-algorithm.svg?branch=master)](https://travis-ci.org/buruzaemon/frequent-algorithm) [![Gem Version](https://badge.fury.io/rb/frequent-algorithm.svg)](https://rubygems.org/gems/frequent-algorithm)
+# frequent-algorithm
 
 Web site usage, social network behavior and Internet traffic are examples
 of systems that appear to follow the [Power law](http://en.wikipedia.org/wiki/Power_law),
@@ -11,6 +11,8 @@ for identifying frequent items in a data stream in sliding windows.
 Please refer to [Identifying Frequent Items in Sliding Windows over On-Line
 Packet Streams](http://erikdemaine.org/papers/SlidingWindow_IMC2003/), by
 Golab, DeHaan, Demaine, L&#243;pez-Ortiz and Munro (2003).
+
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)]() [![Build Status](https://travis-ci.org/buruzaemon/frequent-algorithm.svg?branch=master)](https://travis-ci.org/buruzaemon/frequent-algorithm) [![Gem Version](https://badge.fury.io/rb/frequent-algorithm.svg)](https://rubygems.org/gems/frequent-algorithm)
 
 ## Introduction
 
