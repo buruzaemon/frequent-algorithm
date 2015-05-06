@@ -1,7 +1,11 @@
 ## CHANGELOG
 
-- __2015/mm/dd__ 0.0.4 release.
-    - ...
+- __2015/05/06__ 0.0.4 release.
+    - Issue 17: Enhance Algorithm: new method to return top-k statistics  
+    - Issue 42: Enhance algorithm: Accept one element as parameter in the process method
+    - Issue 45: FIX markdown in CHANGELOG
+    - Issue 53: Get this project to run/test against Rubinius
+    - Initial work to make the code thread-safe
 
 - __2015/03/23__ 0.0.3 release.
     - Further refinements to process.
