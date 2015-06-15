@@ -78,14 +78,14 @@ Therefore, a solution should have the following characteristics:
     alg = Frequent::Algorithm.new(N, b, k) 
 
     # read in and process the 1st basic window
-    alg.process(data.next)
+    data.next.each { |x| alg.process(x) }
 
     # and the top-3 numerals are?
-    top3 = alg.statistics.report
+    top3 = alg.report
     puts top3
 
     # lather, rinse and repeat
-    alg.process(data.next)
+    data.next.each { |x| alg.process(x) }
     
 
 ## Development 
