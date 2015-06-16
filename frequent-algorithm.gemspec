@@ -14,7 +14,7 @@ END_DESC
   s.email = ['tongsinyin@gmail.com', 'buruzaemon@gmail.com']
   s.homepage = 'https://github.com/buruzaemon/frequent-algorithm'
   s.platform = Gem::Platform::RUBY
-  s.required_ruby_version = '>= 2.0'
+  s.required_ruby_version = '>= 1.9.3'
   s.require_path = 'lib'
   s.files = [
     'lib/frequent-algorithm.rb', 
