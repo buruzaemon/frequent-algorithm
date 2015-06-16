@@ -8,7 +8,7 @@
 # `Frequent::Algorithm` is the implementation class.
 module Frequent
   # Version string for this Rubygem.
-  VERSION = '0.0.4'
+  VERSION = '0.0.5'
 end
 
 =begin
